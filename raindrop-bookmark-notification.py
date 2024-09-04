@@ -25,13 +25,21 @@ last_bookmark_file = "last_bookmark_id.txt"
 
 # Set up rotating log
 log_file = 'bookmark_bot.log'
-log_handler = RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024, backupCount=3)  # 5MB per log file, keep 3 backups
-log_handler.setLevel(logging.INFO)
 log_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
-log_handler.setFormatter(log_formatter)
 
+# File Handler (Rotating Log)
+file_handler = RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024, backupCount=3)  # 5MB per log file, keep 3 backups
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(log_formatter)
+
+# Console (Stream) Handler
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.INFO)  # Set the console log level
+console_handler.setFormatter(log_formatter)
+
+# Set up the logger to use both handlers
 logging.basicConfig(
-    handlers=[log_handler],
+    handlers=[file_handler, console_handler],  # Add both handlers
     level=logging.INFO  # Log INFO level and above
 )
 

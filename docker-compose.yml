@@ -1,0 +1,9 @@
+version: '3'
+services:
+  raindrop-bookmark-notification:
+    image: mrxcrypt/raindrop-bookmark-notification:latest
+    container_name: raindrop-bookmark-notification
+    env_file:
+      - .env
+    command: ["python", "raindrop-bookmark-notification.py"]
+    restart: unless-stopped

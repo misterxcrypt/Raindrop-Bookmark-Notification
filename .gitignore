@@ -1,6 +1,6 @@
 .env
 venv
 .git
-bot_log.log
+bookmark_bot.log
 Dockerfile
 last_bookmark_id.txt
